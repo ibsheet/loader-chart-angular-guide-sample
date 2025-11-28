@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "loader-angular-guide-samples": {
+    "loader-chart-angular-guide-samples": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -28,7 +28,6 @@
               "src/styles.css"
             ],
             "allowedCommonJsDependencies": [
-              "@ibsheet/loader"
             ]
           },
           "configurations": {
@@ -59,10 +58,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "loader-angular-guide-samples:build:production"
+              "buildTarget": "loader-chart-angular-guide-samples:build:production"
             },
             "development": {
-              "buildTarget": "loader-angular-guide-samples:build:development"
+              "buildTarget": "loader-chart-angular-guide-samples:build:development"
             }
           },
           "defaultConfiguration": "development"
