@@ -40,4 +40,5 @@ export class App {
     library.addIcons(faCode, faSearch, faGithub);
   }
   protected title = 'ng-guide-samples';
+  protected currentYear = new Date().getFullYear();
 }
