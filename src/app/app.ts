@@ -11,7 +11,7 @@ import 'highcharts/highcharts-more';
 import 'highcharts/modules/series-label';
 
 // Highcharts를 전역 객체에 설정
-(window as typeof window & { Highcharts: typeof Highcharts }).Highcharts = Highcharts;
+if (typeof window !== 'undefined') window.Highcharts = Highcharts;
 
 const ibchartLib = {
   name: 'ibchart',
@@ -24,7 +24,6 @@ loader.config({
 });
 
 loader.load()
-
 @Component({
   selector: 'app-root',
   imports: [
