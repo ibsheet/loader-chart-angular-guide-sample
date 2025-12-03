@@ -6,15 +6,16 @@ import { faCode, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import loader from '@ibsheet/loader';
+import Highcharts from 'highcharts';
+import 'highcharts/highcharts-more';
+import 'highcharts/modules/series-label';
+
+// Highcharts를 전역 객체에 설정
+(window as typeof window & { Highcharts: typeof Highcharts }).Highcharts = Highcharts;
 
 const ibchartLib = {
   name: 'ibchart',
-  baseUrl: 'https://www.ibsheet.com/v8/assets/lib/ibchart/',
-  dependentUrls: [
-    'https://code.highcharts.com/highcharts.js',
-    'https://code.highcharts.com/highcharts-more.js',
-    'https://code.highcharts.com/modules/series-label.js',
-  ],
+  baseUrl: 'https://www.ibsheet.com/v8/assets/lib/ibchart/'
 }
 
 // 로더 config

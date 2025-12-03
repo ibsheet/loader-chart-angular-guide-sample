@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SharedModules } from '../../shared/shared.module';
 import { createChartOption, chartOptions, chartData } from './basic-bar-chart.options';
 import { createChart, removeChart } from '../../config/chart-create/chart-create';
+import type { IChartInstance } from '../../config/chart-create/chart.types';
 
 @Component({
   selector: 'app-basic-bar-chart',
@@ -9,21 +10,26 @@ import { createChart, removeChart } from '../../config/chart-create/chart-create
   templateUrl: './basic-bar-chart.html',
   styleUrl: './basic-bar-chart.css',
 })
-export class BasicBarChart {
-  chartInstance: any = null;
+export class BasicBarChart implements OnInit, OnDestroy {
+  private chartInstance: IChartInstance | null = null;
 
-  ngOnInit(): void {
-    createChart(createChartOption, chartOptions, chartData)
-    .then((chart: any) => {
-      this.chartInstance = chart;
-    })
+  async ngOnInit(): Promise<void> {
+    try {
+      this.chartInstance = await createChart(createChartOption, chartOptions, chartData);
+    } catch (err) {
+      console.error('Failed to create chart:', err);
+    }
   }
 
-  ngOnDestroy(): void {
+  async ngOnDestroy(): Promise<void> {
     if (this.chartInstance) {
-      removeChart(createChartOption, this.chartInstance)
-      .catch((err: any) => console.error('Failed to remove chart', err));
-      this.chartInstance = null;
+      try {
+        await removeChart(createChartOption, this.chartInstance);
+      } catch (err) {
+        console.error('Failed to remove chart:', err);
+      } finally {
+        this.chartInstance = null;
+      }
     }
   }
 }
